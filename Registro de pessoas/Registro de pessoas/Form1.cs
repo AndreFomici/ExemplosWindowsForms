@@ -27,14 +27,29 @@ namespace Registro_de_pessoas
                 Pessoa p = new Pessoa();
                 p.Nome = txtNome.Text;
                 p.Idade = Convert.ToInt32(nudIdade.Value);
+                p.Nascimento = dtpNascimento.Value;
+                p.Profissao = cmbProfissao.Text;
                 p.Telefone = Convert.ToInt64(mskTelefone.Text);
                 if (rdoFeminino.Checked)
+                {
                     p.Sexo = "Feminino";
+                }
                 else
-                    p.Sexo = "Masculino";
+                {
+                    if(rdoMasculino.Checked)
+                    {
+                        p.Sexo = "Masculino";
+                    }
+                    else
+                    {
+                        p.Sexo = "Outro";
+                    }
+                }
 
                 lista.Add(p);
                 ExibeRegistros();
+
+                LimpaCampos();
 
                 /*
                 String nome = txtNome.Text;
@@ -44,21 +59,33 @@ namespace Registro_de_pessoas
             }
         }
 
+        private void LimpaCampos()
+        {
+            txtNome.Clear();
+            dtpNascimento.Value = DateTime.Now;
+            mskTelefone.Clear();
+            cmbProfissao.Text = "";
+            rdoFeminino.Checked = true;
+
+            txtNome.Focus();
+
+        }
+
         private void ExibeRegistros()
         {
             dgvRegistros.DataSource = null;
             dgvRegistros.DataSource = lista;
         }
         /*
-        private void exibeCadastros()
-        {
-            String cadastros = "";
-            foreach (Pessoa temp in lista)
-            {
-                cadastros += temp.Nome + " - " + temp.Idade + Environment.NewLine;
-            }
-            txtCadastro.Text = cadastros;
-        }
-        */
+private void exibeCadastros()
+{
+   String cadastros = "";
+   foreach (Pessoa temp in lista)
+   {
+       cadastros += temp.Nome + " - " + temp.Idade + Environment.NewLine;
+   }
+   txtCadastro.Text = cadastros;
+}
+*/
     }
 }

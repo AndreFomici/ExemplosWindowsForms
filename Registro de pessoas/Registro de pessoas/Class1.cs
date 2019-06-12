@@ -10,6 +10,8 @@ namespace Registro_de_pessoas
     {
         public String Nome {set; get;}
         public Int32 Idade {set; get;}
+        public DateTime Nascimento {set; get;}
+        public String Profissao {set; get;}
         public String Sexo {set; get;}
         public Int64 Telefone {set; get;}
 
